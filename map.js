@@ -4,6 +4,7 @@ import * as mapboxgl from 'https://cdn.jsdelivr.net/npm/mapbox-gl@2.15.0/+esm';
 // Import D3
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
 
+let timeFilter = -1;
 
 // Check that Mapbox GL JS loaded
 console.log('Mapbox GL JS loaded:', mapboxgl);
@@ -27,6 +28,11 @@ function getCoords(station) {
 
     const { x, y } = map.project(point);
     return { cx: x, cy: y };
+}
+
+function formatTime(minutes) {
+    const date = new Date(0, 0, 0, 0, minutes);
+    return date.toLocaleString('en-US', { timeStyle: 'short' });
 }
 
 map.on('load', async () => {
@@ -140,6 +146,27 @@ map.on('load', async () => {
         map.on('zoom', updatePositions);
         map.on('resize', updatePositions);
         map.on('moveend', updatePositions);
+        
+        const timeSlider = document.getElementById('time-slider');
+        const selectedTime = document.getElementById('selected-time');
+        const anyTimeLabel = document.getElementById('any-time');
+
+        function updateTimeDisplay() {
+            timeFilter = Number(timeSlider.value);
+
+            if (timeFilter === -1) {
+                selectedTime.textContent = '';
+                anyTimeLabel.style.display = 'block';
+            } else {
+                selectedTime.textContent = formatTime(timeFilter);
+                anyTimeLabel.style.display = 'none';
+            }
+
+            // Filtering logic will be implemented in Step 5.3
+        }
+
+        timeSlider.addEventListener('input', updateTimeDisplay);
+        updateTimeDisplay();
 
     } catch (error) {
         console.error('Error loading JSON:', error);

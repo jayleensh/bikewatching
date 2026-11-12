@@ -1,14 +1,12 @@
 // Import Mapbox as an ESM module
-import mapboxgl from 'https://cdn.jsdelivr.net/npm/mapbox-gl@2.15.0/+esm';
+import * as mapboxgl from 'https://cdn.jsdelivr.net/npm/mapbox-gl@2.15.0/+esm';
 
 // Check that Mapbox GL JS loaded
 console.log('Mapbox GL JS loaded:', mapboxgl);
 
-// Set your Mapbox access token here
-mapboxgl.accessToken = 'pk.eyJ1IjoiamF5bGVlbnNoIiwiYSI6ImNtd2RoZmxobDAzaWoyeG9sMjRxN2gzbGwifQ.EubXMbDQ2cgVbmCO5ow6UA';
-
 // Initialize the map
-const map = new mapboxgl.Map({
+const map = new mapboxgl.default.Map({
+    accessToken: 'pk.eyJ1IjoiamF5bGVlbnNoIiwiYSI6ImNtd2RoZmxobDAzaWoyeG9sMjRxN2gzbGwifQ.EubXMbDQ2cgVbmCO5ow6UA',
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v12',
     center: [-71.09415, 42.36027],

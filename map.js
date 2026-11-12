@@ -117,7 +117,15 @@ map.on('load', async () => {
             .attr('fill', 'steelblue')
             .attr('stroke', 'white')
             .attr('stroke-width', 1)
-            .attr('opacity', 0.8);
+            .attr('opacity', 0.8)
+            .each(function (d) {
+                d3.select(this)
+                    .append('title')
+                    .text(
+                        `${d.totalTraffic} trips (${d.departures} departures, ${d.arrivals} arrivals)`
+                    );
+            });
+            
         function updatePositions() {
             circles
                 .attr('cx', (d) => getCoords(d).cx)

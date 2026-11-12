@@ -82,7 +82,8 @@ map.on('load', async () => {
 
         console.log('Loaded trips:', trips);
 
-        const svg = d3.select('#map').select('svg');
+        const svg = d3.select('#map')
+            .append('svg');
         const circles = svg
             .selectAll('circle')
             .data(stations)

@@ -31,4 +31,21 @@ map.on('load', async () => {
             'line-opacity': 0.6
         }
     });
+
+    // Add Cambridge bike lanes
+    map.addSource('cambridge_route', {
+        type: 'geojson',
+        data: 'https://data.cambridgema.gov/resource/9aey-9g9p.geojson?$limit=5000'
+    });
+
+    map.addLayer({
+        id: 'cambridge-bike-lanes',
+        type: 'line',
+        source: 'cambridge_route',
+        paint: {
+            'line-color': '#32D400',
+            'line-width': 5,
+            'line-opacity': 0.6
+        }
+    });
 });

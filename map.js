@@ -18,6 +18,7 @@ const map = new mapboxgl.default.Map({
     minZoom: 5,
     maxZoom: 18,
 });
+window.bikeMap = map;
 
 function getCoords(station) {
     const point = new mapboxgl.default.LngLat(

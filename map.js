@@ -12,7 +12,7 @@ console.log('Mapbox GL JS loaded:', mapboxgl);
 const map = new mapboxgl.default.Map({
     accessToken: 'pk.eyJ1IjoiamF5bGVlbnNoIiwiYSI6ImNtd2RoZmxobDAzaWoyeG9sMjRxN2gzbGwifQ.EubXMbDQ2cgVbmCO5ow6UA',
     container: 'map',
-    style: 'mapbox://styles/jayleensh/cmwdmxpjf007u01sgf8zuhcx4',
+    style: 'mapbox://styles/jayleensh/cmwdmu1mn002101slacwp4q4q',
     center: [-71.09415, 42.36027],
     zoom: 12,
     minZoom: 5,
@@ -125,7 +125,7 @@ map.on('load', async () => {
                         `${d.totalTraffic} trips (${d.departures} departures, ${d.arrivals} arrivals)`
                     );
             });
-            
+
         function updatePositions() {
             circles
                 .attr('cx', (d) => getCoords(d).cx)

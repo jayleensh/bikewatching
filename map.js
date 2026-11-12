@@ -74,6 +74,14 @@ map.on('load', async () => {
 
         let stations = jsonData.data.stations;
         console.log('Stations Array:', stations);
+        
+        // Load bike traffic data
+        const trips = await d3.csv(
+            'https://dsc106.com/labs/lab07/data/bluebikes-traffic-2024-03.csv'
+        );
+
+        console.log('Loaded trips:', trips);
+
         const svg = d3.select('#map').select('svg');
         const circles = svg
             .selectAll('circle')
@@ -99,7 +107,7 @@ map.on('load', async () => {
         map.on('zoom', updatePositions);
         map.on('resize', updatePositions);
         map.on('moveend', updatePositions);
-        
+
     } catch (error) {
         console.error('Error loading JSON:', error);
     }

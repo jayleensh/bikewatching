@@ -141,13 +141,18 @@ map.on('load', async () => {
             .scaleSqrt()
             .domain([0, d3.max(stations, (d) => d.totalTraffic)])
             .range([0, 25]);
+        const stationFlow = d3.scaleQuantize()
+            .domain([0, 1])
+            .range([0, 0.5, 1]);
         const circles = svg
             .selectAll('circle')
             .data(stations, (d) => d.short_name)
             .enter()
             .append('circle')
             .attr('r', (d) => radiusScale(d.totalTraffic))
-            .attr('fill', 'steelblue')
+            .style('--departure-ratio', (d) =>
+                stationFlow(d.totalTraffic === 0 ? 0.5 : d.departures / d.totalTraffic)
+            )
             .attr('stroke', 'white')
             .attr('stroke-width', 1)
             .attr('opacity', 0.8)
@@ -193,10 +198,10 @@ map.on('load', async () => {
                 .data(filteredStations, (d) => d.short_name)
                 .join('circle')
                 .attr('r', (d) => radiusScale(d.totalTraffic))
+                .style('--departure-ratio', (d) =>
+                    stationFlow(d.totalTraffic === 0 ? 0.5 : d.departures / d.totalTraffic)
+                )
                 .select('title')
-                .text((d) =>
-                    `${d.totalTraffic} trips (${d.departures} departures, ${d.arrivals} arrivals)`
-                );
         }
 
         function updateTimeDisplay() {

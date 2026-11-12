@@ -80,3 +80,35 @@ header label {
 
     fill: var(--color);
 }
+
+.legend {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+    margin-block: 1em;
+    width: 100%;
+}
+
+.legend div {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    font-size: 0.8em;
+}
+
+.legend div::before {
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+
+    --color-departures: steelblue;
+    --color-arrivals: darkorange;
+
+    background: color-mix(
+        in oklch,
+        var(--color-departures) calc(100% * var(--departure-ratio)),
+        var(--color-arrivals)
+    );
+}

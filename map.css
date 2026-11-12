@@ -35,3 +35,35 @@ body {
     pointer-events: auto;
     cursor: pointer;
 }
+
+header {
+    display: flex;
+    gap: 1em;
+    align-items: baseline;
+    width: 100%;
+}
+
+header label {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+#time-slider {
+    width: 200px;
+}
+
+#selected-time,
+#any-time {
+    display: block;
+}
+
+#selected-time:empty {
+    display: none;
+}
+
+#any-time {
+    color: gray;
+    font-style: italic;
+}

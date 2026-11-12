@@ -29,6 +29,7 @@ body {
     pointer-events: none;
 }
 
-circle {
+#map svg circle {
     pointer-events: auto;
+    cursor: pointer;
 }
